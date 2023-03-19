@@ -1,0 +1,13 @@
+NET "SMJER" LOC = "P39";
+NET "CLK" LOC = "P124";
+
+NET "ANODE" LOC = "P126";
+
+NET "S[0]" LOC = "P59";
+NET "S[1]" LOC = "P61";
+NET "S[2]" LOC = "P54";
+NET "S[3]" LOC = "P57";
+NET "S[4]" LOC = "P58";
+NET "S[5]" LOC = "P60";
+NET "S[6]" LOC = "P53";
+NET "S[7]" LOC = "P56";

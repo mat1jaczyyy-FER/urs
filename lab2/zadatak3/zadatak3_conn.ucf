@@ -1,0 +1,14 @@
+NET "SMJER" LOC = "P39";
+NET "BTN" LOC = "P143";
+NET "CLK" LOC = "P38";
+
+NET "ANODE" LOC = "P126";
+
+NET "DISP[0]" LOC = "P59";
+NET "DISP[1]" LOC = "P61";
+NET "DISP[2]" LOC = "P54";
+NET "DISP[3]" LOC = "P57";
+NET "DISP[4]" LOC = "P58";
+NET "DISP[5]" LOC = "P60";
+NET "DISP[6]" LOC = "P53";
+NET "DISP[7]" LOC = "P56";

@@ -1,0 +1,57 @@
+; Dominik Matijaca 0036524568
+
+INIT:
+    LOAD sA, 00     ; avg = 0x00
+    LOAD s9, 00     ; rem = 0x00
+    LOAD sB, FF     ; min = 0xFF
+    LOAD sC, 00     ; max = 0x00
+    LOAD sF, 00     ; i = 0
+
+LOOP:
+    INPUT s0, 10    ; x = UNP_BVJ
+    OUTPUT s0, 00   ; send x to MOVAVG4
+
+MIN:
+    COMPARE s0, sB  ; if (x >= min)
+    JUMP NC, MAX    ;   goto MAX
+
+    LOAD sB, s0     ; min = x
+
+MAX:
+    COMPARE s0, sC  ; if (x < max)
+    JUMP C, MOVAVG4 ;   goto AVG
+
+    LOAD sC, s0     ; max = x
+
+MOVAVG4:
+    INPUT s1, 01    ; y = MOVAVG4 result
+
+    COMPARE sF, 03  ; if (i < 3)
+    JUMP C, AVG     ;   goto AVG
+
+    OUTPUT s1, 20   ; send y to RPP_BVJ
+
+AVG:
+    COMPARE s0, 32  ; if (x < 50)
+    JUMP C, REM     ;   goto REM
+
+    ADD sA, 01      ; avg++
+    SUB s0, 32      ; x -= 50
+    JUMP AVG        ; goto AVG
+
+REM:
+    ADD s9, s0      ; rem += x
+    COMPARE s9, 32  ; if (rem < 50)
+    JUMP C, NEXT    ;   goto NEXT
+
+    ADD sA, 01      ; avg++
+    SUB s9, 32      ; rem -= 50
+
+NEXT:
+    ADD sF, 01      ; i++
+    COMPARE sF, 32  ; if (i < 50)
+    JUMP C, LOOP    ;   goto LOOP
+
+    OUTPUT sA, 30   ; report avg
+    OUTPUT sB, 40   ; report min
+    OUTPUT sC, 50   ; report max

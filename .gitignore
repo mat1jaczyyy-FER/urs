@@ -1,0 +1,10 @@
+# Ignore generated Vivado project
+project/
+.Xil/
+
+# Vivado lock file
+vivado_pid*.str
+
+# KCPSM6 build files
+program.*
+!program.psm
